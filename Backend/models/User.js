@@ -19,7 +19,16 @@ const schema = mongoose.Schema({
   createdAt: {
         type: Date,
         default: Date.now
-  }
-});
+  },
+  preferences: {
+      coachingStyle: { type: String, default: 'strategist' }, 
+      notifications: { type: Boolean, default: true },
+      emotionTracking: { type: Boolean, default: false }
+  },
+  contextHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Context' }]
+},{ timestamps: true }
+
+);
 const User=mongoose.model('User',schema);
 export default User; 
+
